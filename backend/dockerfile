@@ -1,7 +1,7 @@
 FROM  node:20.18.0-alpine3.20
 EXPOSE  8080
 ENV DB_HOST="mysql"
-RUN addgroup -S expense && adduser -S expense -G appgroup
+RUN addgroup -S expense && adduser -S expense -G expense
 # opt is opptional
 # and you are moving to this directory /opt/server so we are using workdir command  
 RUN  mkdir /opt/server 
