@@ -1,11 +1,12 @@
 FROM  node:20.18.0-alpine3.20
 EXPOSE  8080
 ENV DB_HOST="mysql"
-RUN addgroup -S expense && adduser -S appuser -G appgroup
+RUN addgroup -S expense && adduser -S expense -G appgroup
 # opt is opptional
 # and you are moving to this directory /opt/server so we are using workdir command  
 RUN  mkdir /opt/server 
-RUN chown -r expense:expense /opt/server
+RUN chown -r expense:expense /opt/server 
+# to check the owner R for recarsive.
 WORKDIR  /opt/server
 # copy will copy all the code 
 COPY   package.json .
