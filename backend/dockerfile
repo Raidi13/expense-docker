@@ -1,17 +1,12 @@
 FROM  node:20.18.0-alpine3.20
 EXPOSE  8080
 ENV DB_HOST="mysql"
-RUN addgroup -S expense && adduser -S expense -G expense
-# opt is opptional
-# and you are moving to this directory /opt/server so we are using workdir command  
+RUN addgroup -S expense && adduser -S expense -G expense 
 RUN  mkdir /opt/server 
 RUN chown -R expense:expense /opt/server 
-# to check the owner R for recarsive.
 WORKDIR  /opt/server
-# copy will copy all the code 
 COPY   package.json .
 COPY  *.js .
-# rest all js files will be copy here.
 RUN npm install
 USER  expense
 CMD ["node", "index.js"]
@@ -19,7 +14,7 @@ CMD ["node", "index.js"]
 
 #Before best-practices implemented
 
-# FROM  node:20
+# FROM  node:20 
 # ENV DB_HOST="mysql"
 # EXPOSE  8080
 # # opt is opptional
@@ -34,3 +29,26 @@ CMD ["node", "index.js"]
 # CMD ["node", "index.js"]
 
 
+#image layering :-
+
+    #* From :Node ---> this will pulled from docker hub
+    #. docker create a contaier from  1st instruction and runs 2nd  instruction inside it --(c1)
+    #.expose 8080(i1)
+    #.once 2nd instruction runs it wil create a image from this comtainer --(i1)
+    #.docker create  a contaier form (i1) image ,c2
+    #.runs 3rd instruction inside c2 comtainer
+    #  (ENV DB_HOST='mysql'
+    #. docker create and image from c2 comtainer that is (i2)
+
+# FROM  node:20.18.0-alpine3.20
+# EXPOSE  8080
+# ENV DB_HOST="mysql"
+# RUN addgroup -S expense && adduser -S expense -G expense &&\
+#      mkdir /opt/server &&\
+#      chown -R expense:expense /opt/server  # combine layer
+# WORKDIR  /opt/server
+# COPY   package.json .
+# COPY  *.js .
+# RUN npm install
+# USER  expense
+# CMD ["node", "index.js"]
