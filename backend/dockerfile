@@ -1,15 +1,18 @@
 FROM  node:20.18.0-alpine3.20
-ENV DB_HOST="mysql"
 EXPOSE  8080
+ENV DB_HOST="mysql"
+RUN addgroup -S expense && adduser -S appuser -G appgroup
 # opt is opptional
 # and you are moving to this directory /opt/server so we are using workdir command  
 RUN  mkdir /opt/server 
+RUN chown -r expense:expense /opt/server
 WORKDIR  /opt/server
 # copy will copy all the code 
 COPY   package.json .
 COPY  *.js .
 # rest all js files will be copy here.
 RUN npm install
+USER  expense
 CMD ["node", "index.js"]
 
 
