@@ -20,10 +20,8 @@
 #Before best-practices implemented
 
 FROM  node:20 
-ENV DB_HOST="mysql"
+ENV DB_HOST="localhost"
 EXPOSE  8080
-# opt is opptional
-# and you are moving to this directory /opt/server so we are using workdir command  
 RUN  mkdir /opt/server 
 WORKDIR  /opt/server
 # copy will copy all the code 
