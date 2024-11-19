@@ -6,8 +6,7 @@ RUN groupadd expense && \
 ADD scripts/*.sql /docker-entrypoint-initdb.d
 USER expense
 
-
-   # MYSQL_DATABASE=transactions\
+# MYSQL_DATABASE=transactions\
     # MYQL_USER_expense \
     # MYSQL_PASSWORD=ExpenseApp@1
 
