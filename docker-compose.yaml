@@ -9,14 +9,12 @@ services:
     container_name: mysql # --name mysql
     volumes:
     - mysql:/var/lib/mysql # -v mysql:/var/lib/mysql
-  
   backend:
     image: raidi/backend:v1
     container_name: backend
     command: sh -c "sleep 10 && node /opt/server/index.js"
     depends_on:
     - mysql
-  
   frontend:
     image: raidi/frontend:v1
     container_name: frontend
