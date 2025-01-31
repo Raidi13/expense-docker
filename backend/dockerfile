@@ -19,6 +19,7 @@ CMD ["node", "index.js"]
 # #it looks like 2 dockerfiles inside 1.. 
 # # 1 dockerfile we use it for build
 # # we copy the output in 2nd dockerfile
+#  here we are saving the casing memory in npm install
 
 
 
