@@ -22,3 +22,5 @@ USER expense
 #var/lib/mysql
 #var/run/mysql
 #docker -entrypoint-initdb.d
+
+docker compose up -d
